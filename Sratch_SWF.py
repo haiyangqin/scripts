@@ -30,14 +30,14 @@ authors = [item["author"] for item in flashes]
 #print(len(authors))
 
 for i in range(len(urls)):
-  if( i >= 509):
+  if( i >= 902):
     time.sleep(10)
     print(i)
     url = urls[i]
     response = requests.get(url)
     if response.status_code == 200:
-       names[i] = str(names[i]).replace("*","_")
-       authors[i] = str(authors[i]).replace("*", "_")
+       names[i] = str(names[i]).replace("*","_").replace("<","").replace(">","")
+       authors[i] = str(authors[i]).replace("*", "_").replace("<","").replace(">","")
        with open(names[i]+"_"+authors[i]+".swf", "wb") as file:
             for chunk in response:
                 file.write(chunk)
